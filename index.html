@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Heba 💖</title>
+<style>
+  body { margin:0; font-family:'Segoe UI', 'Poppins', sans-serif; overflow:hidden; background:#f3f4f6; }
+
+  .page { position:absolute; width:100%; height:100%; display:none; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:30px; color:#fff; animation:fade 1.2s ease; }
+  .page.active{ display:flex; }
+  @keyframes fade { from{opacity:0; transform:scale(0.98);} to{opacity:1; transform:scale(1);} }
+
+  .card { background: rgba(255,255,255,0.85); padding:45px; border-radius:25px; max-width:900px; box-shadow:0 20px 50px rgba(0,0,0,0.3); text-align:center; }
+
+  h1 { font-size:42px; line-height:1.4; font-weight:600; color:#ff3c96; }
+  p { font-size:24px; line-height:1.7; margin-top:20px; color:#333; }
+
+  .urdu { font-family: 'Noto Nastaliq Urdu', serif; font-size:28px; line-height:1.8; margin-top:15px; color:#d10047; }
+
+  button { margin-top:25px; padding:15px 35px; font-size:20px; border:none; border-radius:30px; cursor:pointer; font-weight:500; }
+
+  .yes { background: linear-gradient(135deg,#ff758c,#ff7eb3,#ffb347); color:#fff; }
+  .no { background:#aaa; position:absolute; color:#222; }
+
+  /* Colorful gradient backgrounds */
+  .bg { background: linear-gradient(270deg,#ff758c,#ff7eb3,#ffb347,#1fa2ff,#43cea2,#ff758c); background-size:1200% 1200%; animation: gradientBG 20s ease infinite; }
+  @keyframes gradientBG { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
+
+  /* Gift box for first page */
+  .gift { width:120px; height:120px; background:#ff6f91; border-radius:15px; position:relative; cursor:pointer; animation:bounce 1s infinite alternate; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:bold; color:#fff; }
+  .gift::before { content:""; width:15px; height:120px; background:#ffe066; position:absolute; left:50%; top:0; transform:translateX(-50%); border-radius:2px; }
+  .gift::after { content:""; width:120px; height:15px; background:#ffe066; position:absolute; top:50%; left:0; transform:translateY(-50%); border-radius:2px; }
+  @keyframes bounce { 0%{transform:translateY(0);} 100%{transform:translateY(-10px);} }
+
+  /* Big red flower */
+  .flower { font-size:100px; margin-top:30px; animation:grow 2s ease forwards; transform:scale(0); }
+  @keyframes grow {0%{transform:scale(0);} 100%{transform:scale(1);} }
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Background music -->
+<audio id="bgMusic" loop>
+  <source src="https://www.orangefreesounds.com/wp-content/uploads/2016/02/Sad-instrumental-music.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<!-- Page 1: Gift Box -->
+<div class="page bg active" id="page1">
+  <div class="gift" onclick="startLove()">Heba's Soul</div>
+</div>
+
+<!-- Page 2 -->
+<div class="page bg" id="page2">
+  <div class="card">
+    <h1>Heba, your smile lights up the world 🌟</h1>
+    <p>Your laughter is like tiny stars twinkling in the night sky. Every word you speak feels like magic, and your presence fills hearts with warmth.</p>
+    <div class="urdu">تیرا حسن دیکھ کر یہ دل بہک گیا ہے<br>تیری ہر بات میں جادو سا چھا گیا ہے</div>
+    <button class="yes" onclick="nextPage(3)">Next 💖</button>
+  </div>
+</div>
+
+<!-- Page 3 -->
+<div class="page bg" id="page3">
+  <div class="card">
+    <h1>Heba, your eyes are sparkling gems ✨</h1>
+    <p>Every glance is full of life and wonder. You have a way of making the ordinary feel extraordinary. Your beauty isn’t just skin deep; it shines from within.</p>
+    <div class="urdu">تیری آنکھوں کی چمک میں خواب بستے ہیں<br>تیری مسکان میں سارے جہاں کے رنگ ہیں</div>
+    <button class="yes" onclick="nextPage(4)">Next 💕</button>
+  </div>
+</div>
+
+<!-- Page 4 -->
+<div class="page bg" id="page4">
+  <div class="card">
+    <h1>Heba, your heart is pure and kind ❤️</h1>
+    <p>Everything about you feels so gentle, cute, and magical. You inspire smiles, joy, and dreams wherever you go.</p>
+    <div class="urdu">تیرا دل نرم و نازک، جادوئی اور حسین<br>تیری موجودگی سے دنیا روشن ہو گئی</div>
+    <button class="yes" onclick="nextPage(5)">Next 🌹</button>
+  </div>
+</div>
+
+<!-- Page 5: Big red flower + ending -->
+<div class="page bg" id="page5">
+  <div class="card">
+    <h1>Heba, my red rose for you 🌹</h1>
+    <div class="flower">🌹</div>
+    <div class="urdu">یہ گلاب صرف تیرے لئے ہے، ہر جذبے کے ساتھ</div>
+    <h1 style="margin-top:40px; color:#ff4757;">HEBA MY LOVE</h1>
+  </div>
+</div>
+
+<script>
+  const music = document.getElementById("bgMusic");
+  music.volume = 0;
+
+  function startLove(){
+    music.play();
+    fadeInMusic();
+    nextPage(2);
+  }
+
+  function fadeInMusic(){
+    let vol = 0;
+    const fade = setInterval(()=>{
+      if(vol<0.6){ vol+=0.01; music.volume=vol; } else { clearInterval(fade); }
+    },100);
+  }
+
+  function nextPage(num){
+    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+    document.getElementById("page"+num).classList.add("active");
+  }
+</script>
+
+</body>
+</html>
